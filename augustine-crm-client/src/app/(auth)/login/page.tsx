@@ -1,70 +1,197 @@
 "use client";
 
-import { useState } from "react";
-import { supabase } from "../../../../lib/supabaseClient";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { signIn, isAuthenticated } from "../../../../lib/auth";
 
-function LoginPage() {
+export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [checkingAuth, setCheckingAuth] = useState(true);
+  const router = useRouter();
+
+  // Check if user is already logged in
+  useEffect(() => {
+    if (isAuthenticated()) {
+      router.push("/dashboard");
+    } else {
+      setCheckingAuth(false);
+    }
+  }, [router]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(null);
     setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-    setLoading(false);
-    if (error) return alert(error.message);
-    // redirect
-    window.location.href = "/dashboard";
+
+    const result = await signIn(email, password);
+
+    if (!result.success) {
+      setError(result.error || "Failed to sign in");
+      setLoading(false);
+      return;
+    }
+
+    // Successful login - redirect to dashboard
+    router.push("/dashboard");
+    router.refresh();
   };
 
-  return (
-    <div className="min-h-screen bg-amber-800 flex items-center justify-center bg-gradient-to-b from-purplecrm-50 to-white">
-      <div className="bg-purplecrm-600 text-white p-6 rounded-xl2 shadow-card">
-        <h2 className="text-lg font-semibold">Total Leads</h2>
-        <p className="text-3xl font-bold mt-2">1,250</p>
+  // Show loading while checking authentication
+  if (checkingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
+          <p className="mt-4 text-gray-600">Checking authentication...</p>
+        </div>
       </div>
+    );
+  }
 
-      <form
-        onSubmit={handleLogin}
-        className="w-full max-w-md bg-white p-8 rounded-xl shadow-card"
-      >
-        <h2 className="text-2xl font-semibold mb-4 text-purplecrm-700">
-          Sign in to Augustine
-        </h2>
+  return (
+    <div className="min-h-screen flex items-center justify-center px-4 py-12">
+      <div className="w-full max-w-md">
+        {/* Logo/Brand Section */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-primary-700 mb-2">
+            Augustine
+          </h1>
+          <p className="text-gray-600">Sales & Leads Dashboard</p>
+        </div>
 
-        <label className="block mb-2 text-sm">Email</label>
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full p-3 border rounded-md mb-4"
-          type="email"
-          required
-        />
+        {/* Login Form Card */}
+        <div className="bg-white rounded-2xl shadow-card p-8 border border-gray-100 overflow-visible">
+          <h2 className="text-2xl font-semibold mb-6 text-gray-900">
+            Sign in to your account
+          </h2>
 
-        <label className="block mb-2 text-sm">Password</label>
-        <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-3 border rounded-md mb-4"
-          type="password"
-          required
-        />
+          {error && (
+            <div className="mb-4 p-3 bg-danger/10 border border-danger/20 rounded-lg">
+              <p className="text-sm text-danger">{error}</p>
+            </div>
+          )}
 
-        <button
-          className="w-full py-3 rounded-xl btn-gradient text-white font-semibold"
-          disabled={loading}
-        >
-          {loading ? "Signing in..." : "Sign in"}
-        </button>
-      </form>
+          <form onSubmit={handleLogin} className="space-y-5">
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
+                Email address
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors"
+                placeholder="you@example.com"
+                disabled={loading}
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
+                Password
+              </label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autoComplete="current-password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-colors"
+                placeholder="Enter your password"
+                disabled={loading}
+              />
+            </div>
+
+            <div className="flex items-center justify-between text-sm">
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  className="rounded border-gray-300 text-primary-600 focus:ring-primary-500"
+                />
+                <span className="ml-2 text-gray-600">Remember me</span>
+              </label>
+              <a
+                href="#"
+                className="text-primary-600 hover:text-primary-700 font-medium"
+              >
+                Forgot password?
+              </a>
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full py-3 px-4 text-white font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-md hover:shadow-lg"
+              style={{ 
+                backgroundColor: loading ? '#9333EA' : '#9333EA',
+                minHeight: '48px',
+                display: 'block',
+                visibility: 'visible'
+              }}
+            >
+              {loading ? (
+                <span className="flex items-center justify-center">
+                  <svg
+                    className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                  Signing in...
+                </span>
+              ) : (
+                "Sign in"
+              )}
+            </button>
+          </form>
+
+          <div className="mt-6 text-center">
+            <p className="text-sm text-gray-600">
+              Don't have an account?{" "}
+              <a
+                href="/signup"
+                className="text-primary-600 hover:text-primary-700 font-medium"
+              >
+                Sign up
+              </a>
+            </p>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <p className="mt-8 text-center text-sm text-gray-500">
+          © {new Date().getFullYear()} Augustine CRM. All rights reserved.
+        </p>
+      </div>
     </div>
   );
 }
-
-// do not wrap with layout for auth pages
-(LoginPage as any).noLayout = true;
-export default LoginPage;

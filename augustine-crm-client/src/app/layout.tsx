@@ -1,4 +1,4 @@
-import Sidebar from "../components/Sidebar";
+import ConditionalLayout from "../components/ConditionalLayout";
 import "./globals.css";
 
 export const metadata = {
@@ -13,11 +13,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex">
-        <Sidebar />
-        <main className="ml-64 w-full min-h-screen bg-purplecrm-50 p-8">
-          {children}
-        </main>
+      <body>
+        <ConditionalLayout>{children}</ConditionalLayout>
       </body>
     </html>
   );
