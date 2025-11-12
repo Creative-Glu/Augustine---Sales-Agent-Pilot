@@ -15,28 +15,28 @@ export default function DashboardGrid() {
       value: data?.products ?? 0,
       subtitle: 'Active SKUs',
       icon: CubeIcon,
-      color: 'from-purplecrm-400 to-purplecrm-600',
+      color: 'from-[var(--primary-light)] to-[var(--primary-dark)]',
     },
     {
       title: 'Journeys',
       value: data?.journeys ?? 0,
       subtitle: 'Total Journeys',
       icon: ChartBarIcon,
-      color: 'from-green-400 to-emerald-600',
+      color: 'from-[var(--chart-2)] to-[var(--chart-3)]',
     },
     {
       title: 'ICPs',
       value: data?.icps ?? 0,
       subtitle: 'Ideal Profiles',
       icon: UserGroupIcon,
-      color: 'from-blue-400 to-blue-600',
+      color: 'from-[var(--chart-1)] to-[var(--chart-2)]',
     },
     {
       title: 'Campaigns',
       value: data?.campaigns ?? 0,
       subtitle: 'Live Campaigns',
       icon: RocketLaunchIcon,
-      color: 'from-pink-400 to-rose-600',
+      color: 'from-[var(--chart-4)] to-[var(--chart-5)]',
     },
   ];
 
