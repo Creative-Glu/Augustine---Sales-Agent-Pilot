@@ -35,7 +35,7 @@ export default function LoginPage() {
 
   if (checkingAuth) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen  justify-center">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
           <p className="mt-4 text-gray-600">Checking authentication...</p>
@@ -46,7 +46,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md">
+      <div className="">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-primary-700 mb-2">Augustine</h1>
           <p className="text-gray-600">Sales & Leads Dashboard</p>

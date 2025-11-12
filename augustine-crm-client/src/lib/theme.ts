@@ -1,0 +1,147 @@
+const theme = {
+  name: 'DFK Recruitment Theme',
+  version: '1.0.0',
+  colors: {
+    primary: {
+      main: '#1800ad',
+      foreground: '#FFFFFF',
+      light: '#695af24c',
+      dark: '#2924fc',
+      background: '#695af2',
+      hover: '#6366f1',
+    },
+    secondary: {
+      main: '#10B981',
+      foreground: '#FFFFFF',
+      background: '#ffffff',
+      light: '#ebeaf9',
+      dark: '#0c0734cc',
+    },
+    brand: {
+      mentestackBlue: '#1800ad',
+      mentestackGreen: '#10B981',
+      deepNavy: '#0F172A',
+    },
+    background: {
+      main: '#FFFFFF',
+      overlay: '#00000033',
+      light: '#ebeaf9',
+      muted: '#F8FAFC',
+      card: '#FFFFFF',
+    },
+    foreground: {
+      main: '#1E293B',
+      muted: '#475569',
+      card: '#1E293B',
+    },
+    text: {
+      primary: '#0c0734',
+      secondary: '#696685',
+      muted: '#0c0734cc',
+      white: '#ffffff',
+      whiteMuted: '#ffffffb2',
+    },
+    border: {
+      main: '#E2E8F0',
+      input: '#E2E8F0',
+      primary: '#695af2',
+      secondary: '#dedcf1',
+      light: '#ebeaf987',
+    },
+    accent: {
+      main: '#F1F5F9',
+      foreground: '#1E293B',
+      green: '#68d1a0',
+      red: '#ff5454',
+      purple: '#5c4ff2',
+    },
+    status: {
+      success: '#10B981',
+      warning: '#F59E0B',
+      error: '#EF4444',
+      info: '#3B82F6',
+      pending: {
+        background: 'rgba(99,102,241,0.08)',
+        color: '#6366f1',
+        border: '#6366f1',
+      },
+      needsInput: {
+        background: 'rgba(37,99,235,0.08)',
+        color: '#2563eb',
+        border: '#2563eb',
+      },
+      approved: {
+        background: 'rgba(16,185,129,0.08)',
+        color: '#10b981',
+        border: '#10b981',
+      },
+      rejected: {
+        background: 'rgba(220,38,38,0.08)',
+        color: '#dc2626',
+        border: '#dc2626',
+      },
+      modified: {
+        background: 'rgba(139,92,246,0.08)',
+        color: '#8b5cf6',
+        border: '#8b5cf6',
+      },
+      responded: {
+        background: 'rgba(5,150,105,0.08)',
+        color: '#059669',
+        border: '#059669',
+      },
+      failed: {
+        background: 'rgba(185,28,28,0.08)',
+        color: '#b91c1c',
+        border: '#b91c1c',
+      },
+      expired: {
+        background: 'rgba(107,114,128,0.08)',
+        color: '#6b7280',
+        border: '#6b7280',
+      },
+      escalated: {
+        background: 'rgba(217,119,6,0.08)',
+        color: '#d97706',
+        border: '#d97706',
+      },
+      active: {
+        background: '#d1fae5',
+        color: '#065f46',
+      },
+      completed: {
+        background: '#dbeafe',
+        color: '#1e40af',
+      },
+    },
+  },
+  shadows: {
+    sm: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+    md: '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+    lg: '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
+    xl: '0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)',
+    notification: '0 4px 12px rgba(99,102,241,0.25)',
+    notificationHover: '0 8px 20px rgba(99,102,241,0.4)',
+    pulseGlow: '0 0 0 0 rgba(99, 102, 241, 0.4)',
+    pulseGlowPurple: '0 0 0 0 rgba(124, 58, 237, 0.4)',
+  },
+  borderRadius: {
+    sm: '0.5rem',
+    md: '0.75rem',
+    lg: '1rem',
+    xl: '1.5rem',
+    full: '9999px',
+  },
+  spacing: {
+    xs: '0.25rem',
+    sm: '0.5rem',
+    md: '1rem',
+    lg: '1.5rem',
+    xl: '2rem',
+    '2xl': '3rem',
+    '3xl': '4rem',
+    '4xl': '6rem',
+  },
+};
+
+export default theme;
