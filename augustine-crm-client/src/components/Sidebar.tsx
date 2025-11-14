@@ -25,7 +25,7 @@ export default function Sidebar() {
       {/* Brand Header */}
       <div className="p-6 border-b" style={{ borderColor: 'var(--sidebar-border)' }}>
         <h1 className="text-2xl font-bold tracking-wide text-primary">Augustine</h1>
-        <p className="text-sm text-muted-foreground mt-1">Sales & Leads</p>
+        <p className="text-sm  mt-1 text-textColor">Sales & Leads</p>
       </div>
 
       {/* Navigation */}
@@ -37,10 +37,10 @@ export default function Sidebar() {
             <Link
               key={href}
               href={href}
-              className={`group flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200
+              className={`group  flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200
               ${
                 isActive
-                  ? 'bg-mentestack-blue text-white font-semibold'
+                  ? 'bg-mentestack-blue  text-white font-semibold'
                   : 'text-black hover:bg-gray-500 hover:text-primary-foreground'
               }`}
             >
