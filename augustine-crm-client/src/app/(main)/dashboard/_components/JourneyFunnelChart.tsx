@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -11,8 +10,8 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { useDashboardStats } from '@/src/services/states/useDashboardStats';
-import { Skeleton } from '@/src/components/Skeleton';
+import { useDashboardStats } from '@/services/states/useDashboardStats';
+import { Skeleton } from '@/components/Skeleton';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 

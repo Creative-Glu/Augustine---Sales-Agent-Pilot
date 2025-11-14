@@ -1,8 +1,8 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import Pagination from '@/src/components/Pagination';
-import { useProductsPaginated } from '@/src/services/products/useProducts';
+import Pagination from '@/components/Pagination';
+import { useProductsPaginated } from '@/services/products/useProducts';
 import ProductsTable from './ProductsTable';
 
 export default function ProductsList() {
@@ -11,7 +11,7 @@ export default function ProductsList() {
   const offset = searchParams.get('offset') ? parseInt(searchParams.get('offset')!, 10) : 0;
   const validOffset = isNaN(offset) || offset < 0 ? 0 : offset;
 
-  const { data, isLoading, isError } = useProductsPaginated(limit);
+  const { data, isLoading, isError, refetch: fetchProductsList } = useProductsPaginated(limit);
 
   const { products, total, hasMore } = data || { products: [], total: 0, hasMore: false };
   const currentPage = Math.floor(validOffset / limit) + 1;
@@ -27,7 +27,12 @@ export default function ProductsList() {
               Showing {products.length} of {total} products
             </p>
           </div>
-          <ProductsTable products={products} isLoading={isLoading} isError={isError} />
+          <ProductsTable
+            products={products}
+            isLoading={isLoading}
+            isError={isError}
+            fetchProductsList={fetchProductsList}
+          />
         </div>
       </div>
 

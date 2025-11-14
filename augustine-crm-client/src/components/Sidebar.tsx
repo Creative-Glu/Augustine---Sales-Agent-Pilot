@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SIDEBAR_LINKS } from '../constants/sidebarLinks';
 import { useRouter } from 'next/navigation';
-import { signOut } from '@/src/lib/auth/session';
+import { signOut } from '@/lib/auth/session';
 import { ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline';
 
 export default function Sidebar() {

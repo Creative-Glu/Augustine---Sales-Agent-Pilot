@@ -1,4 +1,4 @@
-import { supabase } from '@/src/lib/supabaseClient';
+import { supabase } from '@/lib/supabaseClient';
 
 export interface Product {
   product_id: string;
@@ -83,7 +83,7 @@ export async function updateProduct(id: string, updates: Partial<Product>): Prom
   return data;
 }
 
-export async function deleteProduct(id: string): Promise<void> {
+export async function deleteProduct(id: string | number) {
   const { error } = await supabase.from('products').delete().eq('product_id', id);
   if (error) throw new Error(`Error deleting product: ${error.message}`);
 }

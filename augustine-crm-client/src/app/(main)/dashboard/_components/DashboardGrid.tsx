@@ -1,6 +1,6 @@
 'use client';
 
-import { useDashboardStats } from '@/src/services/states/useDashboardStats';
+import { useDashboardStats } from '@/services/states/useDashboardStats';
 import DashboardCard from './DashboardCard';
 import { CubeIcon, ChartBarIcon, UserGroupIcon, RocketLaunchIcon } from '@heroicons/react/24/solid';
 
