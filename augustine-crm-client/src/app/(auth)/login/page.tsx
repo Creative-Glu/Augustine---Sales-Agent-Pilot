@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation';
 import { signIn } from '@/lib/auth';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('sa@grepruby.io');
+  const [password, setPassword] = useState('sa@grepruby.io');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [checkingAuth, setCheckingAuth] = useState(false);
@@ -97,7 +97,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 px-4 bg-purple-700 text-white font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:opacity-50 transition-colors shadow-md hover:shadow-lg"
+              className="w-full py-3 cursor-pointer px-4 bg-purple-700 text-white font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:opacity-50 transition-colors shadow-md hover:shadow-lg"
             >
               {loading ? 'Signing in...' : 'Sign in'}
             </button>

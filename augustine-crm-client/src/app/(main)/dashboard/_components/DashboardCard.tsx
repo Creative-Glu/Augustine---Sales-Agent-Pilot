@@ -8,29 +8,30 @@ interface CardProps {
   value: string | number;
   subtitle?: string;
   icon: ComponentType<SVGProps<SVGSVGElement>>;
-  color?: string;
+  color?: string; // gradient color
 }
 
 export default function DashboardCard({ title, value, subtitle, icon: Icon, color }: CardProps) {
   return (
     <motion.div
-      whileHover={{
-        scale: 1.03,
-        boxShadow: '0 10px 24px rgba(147, 51, 234, 0.15)',
-      }}
+      whileHover={{ scale: 1.03 }}
       transition={{ duration: 0.2 }}
-      className={`relative p-0.5 rounded-2xl bg-gradient-to-br ${color ?? 'from-primary-light to-primary-dark'} hover:brightness-110`}
+      className={`card bg-gradient-to-br ${color} hover:brightness-110`}
     >
-      <div className="bg-white shadow-md border border-gray-500 rounded-2xl p-6 h-full flex flex-col justify-between transition-all duration-300">
+      {/* Inner content */}
+      <div className="bg-card  text-card-foreground rounded-xl border border-border shadow-2xl p-6 flex flex-col justify-between h-full">
+        {/* Top row: Icon + Value */}
         <div className="flex items-center justify-between">
-          <div className="p-3 rounded-xl bg-gradient-to-br from-gray-100 to-gray-50 shadow-sm">
+          <div className="p-3 rounded-xl bg-gray-100 shadow-sm flex items-center justify-center">
             <Icon className="w-6 h-6 text-primary" />
           </div>
-          <p className="text-3xl font-bold text-card-foreground">{value}</p>
+          <p className="text-3xl font-bold">{value}</p>
         </div>
+
+        {/* Bottom row: Title + Subtitle */}
         <div className="mt-4">
-          <h3 className="text-sm font-semibold text-card-foreground">{title}</h3>
-          {subtitle && <p className="text-xs text-muted-foreground mt-1 font-medium">{subtitle}</p>}
+          <h3 className="text-sm font-semibold">{title}</h3>
+          {subtitle && <p className="text-xs text-muted-foreground mt-1">{subtitle}</p>}
         </div>
       </div>
     </motion.div>

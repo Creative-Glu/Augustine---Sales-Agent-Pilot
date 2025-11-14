@@ -15,7 +15,7 @@ export default function DashboardGrid() {
       value: data?.products ?? 0,
       subtitle: 'Active SKUs',
       icon: CubeIcon,
-      color: 'from-[var(--primary-light)] to-[var(--primary-dark)]',
+      color: 'from-chart-2 to-chart-3', // Tailwind gradient
     },
     {
       title: 'Journeys',
@@ -29,19 +29,19 @@ export default function DashboardGrid() {
       value: data?.icps ?? 0,
       subtitle: 'Ideal Profiles',
       icon: UserGroupIcon,
-      color: 'from-[var(--chart-1)] to-[var(--chart-2)]',
+      color: 'from-chart-2 to-chart-3', // Tailwind gradient
     },
     {
       title: 'Campaigns',
       value: data?.campaigns ?? 0,
       subtitle: 'Live Campaigns',
       icon: RocketLaunchIcon,
-      color: 'from-[var(--chart-4)] to-[var(--chart-5)]',
+      color: 'from-chart-2 to-chart-3', // Tailwind gradient
     },
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {stats.map((stat) => (
         <DashboardCard key={stat.title} {...stat} />
       ))}

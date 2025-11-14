@@ -1,11 +1,22 @@
-import { HomeIcon, ChartBarIcon, CubeIcon, UserGroupIcon } from '@heroicons/react/24/outline';
+import {
+  HomeIcon,
+  ChartBarIcon,
+  CubeIcon,
+  UserGroupIcon,
+  DocumentChartBarIcon,
+  Squares2X2Icon,
+} from '@heroicons/react/24/outline';
 
 export const SIDEBAR_LINKS = [
   { href: '/dashboard', label: 'Dashboard', icon: HomeIcon },
-  { href: '/kra-dashboard', label: 'KRA Dashboard', icon: ChartBarIcon },
   { href: '/kpi-dashboard', label: 'KPI Dashboard', icon: ChartBarIcon },
+  {
+    href: '/lead-tracking-dashboard',
+    label: 'Lead Tracking Dashboard',
+    icon: DocumentChartBarIcon,
+  },
   { href: '/products', label: 'Products', icon: CubeIcon },
-  { href: '/icp', label: 'ICP', icon: UserGroupIcon },
+  { href: '/icp', label: 'ICP', icon: Squares2X2Icon },
   { href: '/offers', label: 'Offers', icon: CubeIcon },
   { href: '/campaigns', label: 'Campaigns', icon: ChartBarIcon },
   { href: '/leads', label: 'Leads', icon: UserGroupIcon },

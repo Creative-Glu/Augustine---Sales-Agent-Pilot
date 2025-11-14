@@ -41,12 +41,12 @@ export default function Sidebar() {
               ${
                 isActive
                   ? 'bg-mentestack-blue text-white font-semibold'
-                  : 'text-black hover:bg-black hover:text-primary-foreground'
+                  : 'text-black hover:bg-gray-500 hover:text-primary-foreground'
               }`}
             >
               <Icon
                 className={`w-5 h-5 ${
-                  isActive ? 'text-white' : 'text-black group-hover:text-primary'
+                  isActive ? 'text-white' : 'text-black group-hover:text-white'
                 }`}
               />
               <span>{label}</span>
