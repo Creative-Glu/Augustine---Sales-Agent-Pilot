@@ -1,6 +1,6 @@
 import { supabase } from '@/lib/supabaseClient';
 
-export async function getDashboardStats() {
+export async function getDashboardAnalytics() {
   try {
     const [products, journeys, icps, campaigns] = await Promise.all([
       supabase.from('products').select('*', { count: 'exact', head: true }),

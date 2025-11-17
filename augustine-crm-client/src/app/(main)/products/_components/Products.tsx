@@ -6,7 +6,9 @@ import Pagination from '@/components/Pagination';
 import { useProductsPaginated } from '@/services/products/useProducts';
 import ProductsTable from './ProductsTable';
 import React from 'react';
-import CreateProductButton from './CreateProductButton';
+import { PageHeader } from '@/components/PageHeader';
+import { CreateButton } from '@/components/CreateButton';
+import { PlusCircleIcon } from 'lucide-react';
 
 const CreateProductModal = dynamic(() => import('./CreateProductModal'), { ssr: false });
 
@@ -28,15 +30,9 @@ export default function Products() {
     <div className="space-y-6">
       <div className="bg-white rounded-xl border border-gray-200 shadow-md overflow-hidden">
         <div className="p-6">
-          <div className="mb-6 flex items-start justify-between gap-4">
-            <div>
-              <h2 className="text-2xl font-bold text-card-foreground">Products</h2>
-              <p className="text-sm text-muted-foreground mt-1">
-                Showing {products.length} of {total} products
-              </p>
-            </div>
-            <CreateProductButton onClick={() => setProductModalOpen(true)} />
-          </div>
+          <PageHeader title="Products" subtitle={`Showing ${products.length} of ${total} products`}>
+            <CreateButton label="Create Product" onClick={() => setProductModalOpen(true)} />
+          </PageHeader>
 
           <ProductsTable
             products={products}

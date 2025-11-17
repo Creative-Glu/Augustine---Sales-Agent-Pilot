@@ -8,6 +8,9 @@ import { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { pricingTypeConfig } from '@/constants/pricing-types';
 import { useToastHelpers } from '@/lib/toast';
+import { DeleteButton, EditButton } from '@/components/ActionButtons';
+import { TableHeader } from '@/components/TableHeader';
+import { PRODUCT_TABLE_COLUMNS } from '@/constants';
 
 interface ProductsTableProps {
   products: Product[];
@@ -51,25 +54,7 @@ export default function ProductsTable({
     <div className="w-full">
       <div className="overflow-x-auto">
         <table className="w-full">
-          <thead>
-            <tr className="border-b border-gray-200">
-              <th className="text-left py-3 px-4 text-sm font-semibold text-card-foreground">
-                Product Name
-              </th>
-              <th className="text-left py-3 px-4 text-sm font-semibold text-card-foreground">
-                Pricing Type
-              </th>
-              <th className="text-left py-3 px-4 text-sm font-semibold text-card-foreground">
-                Price
-              </th>
-              <th className="text-left py-3 px-4 text-sm font-semibold text-card-foreground">
-                Created At
-              </th>
-              <th className="text-center py-3 px-4 text-sm font-semibold text-card-foreground">
-                Actions
-              </th>
-            </tr>
-          </thead>
+          <TableHeader columns={PRODUCT_TABLE_COLUMNS} />
 
           <tbody>
             {isLoading && (
@@ -106,11 +91,11 @@ export default function ProductsTable({
                   <td className="py-4 px-4">
                     <div className="font-medium text-card-foreground">{product.product_name}</div>
 
-                    {product.product_description && (
+                    {/* {product.product_description && (
                       <div className="text-xs text-muted-foreground mt-1 truncate">
                         {product.product_description}
                       </div>
-                    )}
+                    )} */}
                   </td>
 
                   <td className="py-4 px-4">
@@ -145,26 +130,9 @@ export default function ProductsTable({
                     </div>
                   </td>
 
-                  <td className="py-4 px-4">
-                    <div className="flex items-center justify-end gap-2">
-                      <button
-                        type="button"
-                        disabled
-                        className="inline-flex items-center justify-center p-2 text-muted-foreground border border-gray-200 rounded-lg bg-white cursor-not-allowed opacity-60 hover:bg-gray-50 transition-colors"
-                        title="Edit"
-                      >
-                        <PencilSquareIcon className="w-4 h-4" />
-                      </button>
-
-                      <button
-                        type="button"
-                        className="inline-flex items-center justify-center p-2 text-red-700 border border-red-500 rounded-lg bg-white cursor-pointer hover:bg-red-50 transition-colors"
-                        title="Delete"
-                        onClick={() => openDeleteDialog(product.product_id)}
-                      >
-                        <TrashIcon className="w-4 h-4" />
-                      </button>
-                    </div>
+                  <td className="py-4 px-4 flex items-center justify-center gap-2">
+                    <EditButton />
+                    <DeleteButton onDelete={() => openDeleteDialog(product.product_id)} />
                   </td>
                 </tr>
               ))}

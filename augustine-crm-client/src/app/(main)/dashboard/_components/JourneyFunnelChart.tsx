@@ -10,7 +10,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { useDashboardStats } from '@/services/states/useDashboardStats';
+import { useDashboardAnalytics } from '@/services/analytics/useDashboardAnalytics';
 import { Skeleton } from '@/components/Skeleton';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -21,7 +21,7 @@ function getCSSVar(name: string, fallback = '#6366f1') {
 }
 
 export default function JourneyFunnelChart({ counts }: { counts?: number[] }) {
-  const { data, isLoading } = useDashboardStats();
+  const { data, isLoading } = useDashboardAnalytics();
 
   if (isLoading) {
     return (

@@ -1,11 +1,11 @@
 'use client';
 
-import { useDashboardStats } from '@/services/states/useDashboardStats';
+import { useDashboardAnalytics } from '@/services/analytics/useDashboardAnalytics';
 import DashboardCard from './DashboardCard';
 import { CubeIcon, ChartBarIcon, UserGroupIcon, RocketLaunchIcon } from '@heroicons/react/24/solid';
 
 export default function DashboardGrid() {
-  const { data, isLoading, isError } = useDashboardStats();
+  const { data, isLoading, isError } = useDashboardAnalytics();
 
   if (isError) return <div className="p-6 text-red-600">Error loading stats</div>;
 
