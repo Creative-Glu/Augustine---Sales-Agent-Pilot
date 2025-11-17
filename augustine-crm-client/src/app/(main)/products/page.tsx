@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import ProductsList from './_components/ProductsList';
+import Products from './_components/Products';
 import ProductsLoader from './_components/ProductsLoader';
 
 export default function ProductsPage() {
@@ -10,7 +10,7 @@ export default function ProductsPage() {
         <p className="text-muted-foreground mt-1">Manage and view all your products.</p>
       </div>
       <Suspense fallback={<ProductsLoader />}>
-        <ProductsList />
+        <Products />
       </Suspense>
     </div>
   );

@@ -8,9 +8,9 @@ import {
   createProduct,
   updateProduct,
   deleteProduct,
-  Product,
   ProductsResponse,
 } from './product.service';
+import { Product } from '@/types/product';
 
 // Re-export types so components don't need to import from service files
 export type { Product, ProductsResponse };

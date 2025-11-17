@@ -8,7 +8,7 @@ interface CardProps {
   value: string | number;
   subtitle?: string;
   icon: ComponentType<SVGProps<SVGSVGElement>>;
-  color?: string; // gradient color
+  color?: string;
 }
 
 export default function DashboardCard({ title, value, subtitle, icon: Icon, color }: CardProps) {

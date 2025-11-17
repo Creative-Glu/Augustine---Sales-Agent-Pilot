@@ -1,4 +1,7 @@
-export function formatPrice(price: number | null | undefined, pricingType?: string | null): string {
+export function formatPrice(
+  price: string | number | null | undefined,
+  pricingType?: string | null
+): string {
   if (price === null || price === undefined) return 'N/A';
   return new Intl.NumberFormat('en-US', {
     style: 'currency',

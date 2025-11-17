@@ -1,13 +1,14 @@
 import { supabase } from '@/lib/supabaseClient';
+import { Product } from '@/types/product';
 
-export interface Product {
-  product_id: string;
-  product_name: string;
-  product_description?: string;
-  pricing_type?: string;
-  price?: number;
-  created_at?: string;
-}
+// export interface Product {
+//   product_id: string;
+//   product_name: string;
+//   product_description?: string;
+//   pricing_type?: string;
+//   price?: number;
+//   created_at?: string;
+// }
 
 export interface ProductsResponse {
   products: Product[];
@@ -62,9 +63,7 @@ export async function getProductById(id: string): Promise<Product | null> {
   return data;
 }
 
-export async function createProduct(
-  product: Omit<Product, 'product_id' | 'created_at'>
-): Promise<Product> {
+export async function createProduct(product: Product): Promise<Product> {
   const { data, error } = await supabase.from('products').insert([product]).select().single();
 
   if (error) throw new Error(`Error creating product: ${error.message}`);

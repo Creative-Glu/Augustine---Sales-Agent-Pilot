@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import DashboardGrid from './_components/DashboardGrid';
 import DashboardLoader from './_components/DashboardLoader';
 import JourneyFunnelChart from './_components/JourneyFunnelChart';
+import DelayedComponent from './_components/DelayedComponent';
 
 export default function DashboardPage() {
   return (
@@ -18,6 +19,7 @@ export default function DashboardPage() {
               <DashboardGrid />
             </div>
           </div>
+
           <div className="space-y-6 shadow-2xl mt-5 rounded-2xl">
             <JourneyFunnelChart />
           </div>

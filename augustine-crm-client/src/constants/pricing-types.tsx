@@ -1,5 +1,34 @@
 import { Wrench, CreditCard, ShoppingBag, CircleHelp } from 'lucide-react';
 
+export interface ProductPricingTypeOption {
+  id: number;
+  label: string;
+  value: string;
+}
+
+export const PRODUCT_PRICING_TYPE: ProductPricingTypeOption[] = [
+  {
+    id: 1,
+    label: 'Free',
+    value: 'free',
+  },
+  {
+    id: 2,
+    label: 'One-time',
+    value: 'one-time',
+  },
+  {
+    id: 3,
+    label: 'Service',
+    value: 'service',
+  },
+  {
+    id: 4,
+    label: 'Custom',
+    value: 'custom',
+  },
+] as const;
+
 export const pricingTypeConfig: Record<string, { color: string; icon: React.ReactNode }> = {
   service: {
     color: 'bg-blue-100 text-blue-700 border-blue-300',
