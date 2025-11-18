@@ -1,6 +1,7 @@
 export interface TableHeaderColumn {
   label: string;
   align?: 'left' | 'center' | 'right';
+  value?: string;
 }
 
 interface TableHeaderProps {

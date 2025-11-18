@@ -8,21 +8,21 @@ export const PRODUCT_TABLE_COLUMNS: TableHeaderColumn[] = [
   { label: 'Actions', align: 'center' },
 ];
 
-export const ICP_TABLE_COLUMNS: any[] = [
+export const ICP_TABLE_COLUMNS: TableHeaderColumn[] = [
   { label: 'ICP Name', align: 'left' },
   { label: 'Description', align: 'left' },
   { label: 'Created At', align: 'left' },
   { label: 'Actions', align: 'center' },
 ];
 
-export const PRODUCT_OFFER_COLUMNS = [
+export const PRODUCT_OFFER_COLUMNS: TableHeaderColumn[] = [
   { label: 'Offer Name' },
   { label: 'ICP' },
   { label: 'Products' },
   { label: 'Actions' },
 ];
 
-export const CAMPAIGN_COLUMNS = [
+export const CAMPAIGN_COLUMNS: TableHeaderColumn[] = [
   {
     label: 'Campaign Name',
   },
@@ -42,7 +42,10 @@ export const CAMPAIGN_COLUMNS = [
     label: 'Actions',
   },
 ];
-export const CAMPAIGN_STATUS_OPTIONS = [
-  { id: 'running', label: 'Running', value: 'Running' },
-  { id: 'draft', label: 'Draft', value: 'Draft' },
+export const CAMPAIGN_STATUS_OPTIONS: TableHeaderColumn[] = [
+  { label: 'Running', value: 'Running' },
+  { label: 'Active', value: 'Active' },
+  { label: 'Draft', value: 'Draft' },
+  { label: 'Stopped', value: 'Stopped' },
+  { label: 'AFA', value: 'AFA' },
 ];

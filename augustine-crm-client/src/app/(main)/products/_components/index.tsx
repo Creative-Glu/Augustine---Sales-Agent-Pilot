@@ -12,7 +12,7 @@ import { PlusCircleIcon } from 'lucide-react';
 
 const CreateProductModal = dynamic(() => import('./CreateProductModal'), { ssr: false });
 
-export default function Products() {
+export default function ProductsPage() {
   const searchParams = useSearchParams();
   const limit = 10;
   const offset = searchParams.get('offset') ? parseInt(searchParams.get('offset')!, 10) : 0;
