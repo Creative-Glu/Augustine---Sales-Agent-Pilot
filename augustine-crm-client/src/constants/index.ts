@@ -21,3 +21,28 @@ export const PRODUCT_OFFER_COLUMNS = [
   { label: 'Products' },
   { label: 'Actions' },
 ];
+
+export const CAMPAIGN_COLUMNS = [
+  {
+    label: 'Campaign Name',
+  },
+  {
+    label: 'Offer Name',
+  },
+  {
+    label: 'Status',
+  },
+  {
+    label: 'Created At',
+  },
+  {
+    label: 'Instruction',
+  },
+  {
+    label: 'Actions',
+  },
+];
+export const CAMPAIGN_STATUS_OPTIONS = [
+  { id: 'running', label: 'Running', value: 'Running' },
+  { id: 'draft', label: 'Draft', value: 'Draft' },
+];
