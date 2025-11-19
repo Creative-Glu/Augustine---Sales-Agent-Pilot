@@ -3,6 +3,7 @@ import { KPIDashboard } from './_components/KPIDashboard';
 import ProductsLoader from '../products/_components/ProductsLoader';
 import { BarChart3, Zap } from 'lucide-react';
 import { Header } from '@/components/Header';
+import LoadingPage from '@/app/loading';
 
 export default function KPIPage() {
   return (
@@ -14,7 +15,7 @@ export default function KPIPage() {
         showLive={true}
       />
 
-      <Suspense fallback={<ProductsLoader />}>
+      <Suspense fallback={<LoadingPage />}>
         <KPIDashboard />
       </Suspense>
     </div>

@@ -13,7 +13,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
     <>
       <Protect fallback={<RedirectToLogin />}>
         <Sidebar />
-        {children}
+        <div className="ml-64 min-h-screen bg-purplecrm-50 p-8">{children}</div>
       </Protect>
     </>
   );

@@ -4,6 +4,7 @@ import DashboardGrid from './_components/DashboardGrid';
 import DashboardLoader from './_components/DashboardLoader';
 import JourneyFunnelChart from './_components/JourneyFunnelChart';
 import { Header } from '@/components/Header';
+import LoadingPage from '@/app/loading';
 
 export default function DashboardPage() {
   return (
@@ -16,7 +17,7 @@ export default function DashboardPage() {
       />
 
       <div className="px-6 py-8">
-        <Suspense fallback={<DashboardLoader />}>
+        <Suspense fallback={<LoadingPage />}>
           <div className="space-y-8">
             {/* Dashboard Grid Section */}
             <div>

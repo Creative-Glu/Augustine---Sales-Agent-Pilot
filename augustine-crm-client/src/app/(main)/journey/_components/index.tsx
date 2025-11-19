@@ -13,7 +13,7 @@ const JourneyPage = () => {
   return (
     <>
       <LeadJourneyChart journeys={journeys} isLoading={isLoading} />
-      <LeadJourneyDashboard journeys={journeys} isLoading={isLoading} />
+      {/* <LeadJourneyDashboard journeys={journeys} isLoading={isLoading} /> */}
     </>
   );
 };

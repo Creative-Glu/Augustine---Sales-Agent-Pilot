@@ -12,7 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <ClerkProvider>
       <html lang="en">
         <body>
-          <main className="ml-64 min-h-screen bg-purplecrm-50 p-8">
+          <main className="">
             <QueryProvider>{children}</QueryProvider>
             <ToastProvider />
           </main>{' '}
