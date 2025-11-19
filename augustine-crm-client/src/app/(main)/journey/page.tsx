@@ -1,22 +1,25 @@
 import { Suspense } from 'react';
 import JourneyPage from './_components';
-import LeadJourneyDashboard from './_components/LeadJourneyDashboard';
+import { SquareChartGanttIcon } from 'lucide-react';
+import { Header } from '@/components/Header';
 
 export default function DashboardPage() {
   return (
     <div className="">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-foreground">Lead Journey</h1>
-        <p className="text-muted-foreground mt-1">
-          Visualize the journey of your leads across different stages in the CRM. Track progress
-          from initial outreach to conversion.
-        </p>
-      </div>
+      <Header
+        title="Lead Journey"
+        subtitle="Visualize the journey of your leads across different stages in the CRM. Track progress
+          from initial outreach to conversion."
+        icon={<SquareChartGanttIcon className="w-6 h-6 text-white" />}
+        showLive={true}
+      />
 
-      {/* Chart */}
-      <Suspense fallback={<h2 className="text-gray-500">Loading Lead Journey Chart...</h2>}>
-        <JourneyPage />
-      </Suspense>
+      <div className="mt-5">
+        {' '}
+        <Suspense fallback={<h2 className="text-gray-500">Loading Lead Journey Chart...</h2>}>
+          <JourneyPage />
+        </Suspense>
+      </div>
     </div>
   );
 }

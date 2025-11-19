@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { SignIn } from '@clerk/nextjs';
+import { motion } from 'framer-motion';
+import { SparklesIcon } from '@heroicons/react/24/outline';
 
 export default function LoginPage() {
   const [checkingAuth, setCheckingAuth] = useState(false);
@@ -32,6 +34,23 @@ export default function LoginPage() {
         <p className="mt-8 text-center text-sm text-gray-500">
           © {new Date().getFullYear()} Augustine CRM. All rights reserved.
         </p>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7 }}
+          className="text-center"
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 5 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            className="mt-6 flex items-center justify-center gap-2 text-slate-400 text-xs"
+          >
+            <div className="h-px w-8 bg-gradient-to-r from-transparent to-slate-600" />
+            <span>Secure Authentication</span>
+            <div className="h-px w-8 bg-gradient-to-l from-transparent to-slate-600" />
+          </motion.div>
+        </motion.div>
       </div>
     </div>
   );

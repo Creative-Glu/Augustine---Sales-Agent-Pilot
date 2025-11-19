@@ -1,16 +1,22 @@
 import { Suspense } from 'react';
 import CompaignPage from './_components';
+import { SquareChartGanttIcon } from 'lucide-react';
+import { Header } from '@/components/Header';
 
 const Page = () => {
   return (
     <div className="">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-foreground">Campaign</h1>
-        <p className="text-muted-foreground mt-1">Manage and view all your campaign.</p>
+      <Header
+        title="Campaign"
+        subtitle="Manage and view all your campaign."
+        icon={<SquareChartGanttIcon className="w-6 h-6 text-white" />}
+        showLive={true}
+      />
+      <div className="mt-5">
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <CompaignPage />
+        </Suspense>
       </div>
-      <Suspense fallback={<h1>Loading...</h1>}>
-        <CompaignPage />
-      </Suspense>
     </div>
   );
 };

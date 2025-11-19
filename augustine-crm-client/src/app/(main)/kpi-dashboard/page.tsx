@@ -1,19 +1,19 @@
 import { Suspense } from 'react';
 import { KPIDashboard } from './_components/KPIDashboard';
 import ProductsLoader from '../products/_components/ProductsLoader';
+import { BarChart3, Zap } from 'lucide-react';
+import { Header } from '@/components/Header';
 
 export default function KPIPage() {
   return (
-    <div className="">
-      {/* Header Section */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-foreground">KPI Dashboard</h1>
-        <p className="text-muted-foreground mt-1">
-          Overview of key metrics and funnel stage analytics.
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 dark:from-slate-950 dark:via-blue-950 dark:to-slate-950">
+      <Header
+        title="KPI Dashboard"
+        subtitle="Overview of key metrics and funnel stage analytics."
+        icon={<BarChart3 className="w-6 h-6 text-white" />}
+        showLive={true}
+      />
 
-      {/* KPI Dashboard Component */}
       <Suspense fallback={<ProductsLoader />}>
         <KPIDashboard />
       </Suspense>

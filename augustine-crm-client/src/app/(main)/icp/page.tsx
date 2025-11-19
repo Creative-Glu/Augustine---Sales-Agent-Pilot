@@ -1,16 +1,22 @@
 import { Suspense } from 'react';
 import ICPs from './_components';
+import { Header } from '@/components/Header';
+import { SquareChartGantt } from 'lucide-react';
 
 const ICPsPage = () => {
   return (
     <div className="">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-foreground">ICPs</h1>
-        <p className="text-muted-foreground mt-1">Manage and view all your ICPs.</p>
+      <Header
+        title="ICPs"
+        subtitle="Manage and view all your ICPs."
+        icon={<SquareChartGantt className="w-6 h-6 text-white" />}
+        showLive={true}
+      />
+      <div className="mt-5">
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <ICPs />
+        </Suspense>
       </div>
-      <Suspense fallback={<h1>Loading...</h1>}>
-        <ICPs />
-      </Suspense>
     </div>
   );
 };

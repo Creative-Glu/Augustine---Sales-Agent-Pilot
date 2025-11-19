@@ -3,77 +3,159 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SIDEBAR_LINKS } from '../constants/sidebarLinks';
-import { ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline';
-import { SignedIn, SignOutButton, UserButton, UserProfile, useUser } from '@clerk/nextjs';
+import { ArrowRightOnRectangleIcon, Bars3Icon } from '@heroicons/react/24/outline';
+import { SignedIn, SignOutButton, UserButton, useUser } from '@clerk/nextjs';
+import { motion } from 'framer-motion';
+import { LogoutButton } from './LogoutButton';
 
 export default function Sidebar() {
   const pathname = usePathname();
   const { user } = useUser();
 
+  const sidebarVariants = {
+    hidden: { x: -20, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: { duration: 0.5, ease: 'easeOut' },
+    },
+  };
+
+  const navItemVariants = {
+    hidden: { opacity: 0, x: -10 },
+    visible: (i: number) => ({
+      opacity: 1,
+      x: 0,
+      transition: { delay: i * 0.05, duration: 0.3 },
+    }),
+  };
+
   return (
-    <aside
-      className="fixed left-0 top-0 h-screen w-64 text-sidebar-foreground flex flex-col shadow-lg border-r"
-      style={{ borderColor: 'var(--sidebar-border)' }}
+    <motion.aside
+      // variants={sidebarVariants}
+      initial="hidden"
+      animate="visible"
+      className="fixed left-0 top-0 h-screen w-64 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 dark:from-slate-950 dark:via-slate-950 dark:to-slate-900 text-white flex flex-col shadow-2xl border-r border-slate-700/50"
     >
       {/* Brand Header */}
-      <div className="p-6 border-b" style={{ borderColor: 'var(--sidebar-border)' }}>
-        <h1 className="text-2xl font-bold tracking-wide text-primary">Augustine</h1>
-        <p className="text-sm mt-1 text-textColor">Sales & Leads</p>
-      </div>
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="p-6 border-b border-slate-700/50 bg-gradient-to-r from-blue-600/10 to-cyan-600/10"
+      >
+        <div className="flex items-center justify-center gap-3 mb-2">
+          {/* <div className="p-2 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg">
+            <Bars3Icon className="w-5 h-5 text-white" />
+          </div> */}
+          <h1 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+            Augustine
+          </h1>
+        </div>
+        <p className="text-xs text-slate-400 font-medium uppercase tracking-widest ml-11">
+          Sales & Leads
+        </p>
+      </motion.div>
 
       {/* Navigation */}
       <nav className="flex-1 p-4 space-y-1 overflow-y-auto custom-scrollbar">
-        {SIDEBAR_LINKS.map(({ href, label, icon: Icon }) => {
+        {SIDEBAR_LINKS.map(({ href, label, icon: Icon }, index) => {
           const isActive = pathname === href;
           return (
-            <Link
+            <motion.div
               key={href}
-              href={href}
-              className={`group flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-200
-              ${
-                isActive
-                  ? 'bg-mentestack-blue text-white font-semibold'
-                  : 'text-black hover:bg-gray-500 hover:text-primary-foreground'
-              }`}
+              custom={index}
+              variants={navItemVariants}
+              initial="hidden"
+              animate="visible"
             >
-              <Icon
-                className={`w-5 h-5 ${
-                  isActive ? 'text-white' : 'text-black group-hover:text-white'
+              <Link
+                href={href}
+                className={`group flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 relative overflow-hidden
+                ${
+                  isActive
+                    ? 'bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-lg shadow-blue-500/30'
+                    : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
                 }`}
-              />
-              <span>{label}</span>
-            </Link>
+              >
+                {/* Animated background for hover state */}
+                {!isActive && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600/0 to-cyan-600/0 group-hover:from-blue-600/10 group-hover:to-cyan-600/10 transition-all duration-300" />
+                )}
+
+                {/* Icon */}
+                <motion.div
+                  whileHover={!isActive ? { scale: 1.1, rotate: 5 } : {}}
+                  transition={{ duration: 0.2 }}
+                  className="relative z-10"
+                >
+                  <Icon
+                    className={`w-5 h-5 transition-all duration-300 ${
+                      isActive ? 'text-white' : 'text-slate-400 group-hover:text-blue-400'
+                    }`}
+                  />
+                </motion.div>
+
+                {/* Label */}
+                <span className="relative z-10 flex-1">{label}</span>
+
+                {/* Active indicator dot */}
+                {isActive && (
+                  <motion.div
+                    layoutId="activeIndicator"
+                    className="w-2 h-2 rounded-full bg-white"
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  />
+                )}
+              </Link>
+            </motion.div>
           );
         })}
       </nav>
 
+      {/* Divider */}
+      <div className="h-px bg-gradient-to-r from-slate-700/0 via-slate-700/50 to-slate-700/0" />
+
       {/* Footer */}
-      <div
-        className="p-4 border-t flex items-center flex-col gap-3"
-        style={{ borderColor: 'var(--sidebar-border)', color: 'var(--muted-foreground)' }}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+        className="p-4 border-t border-slate-700/50 bg-gradient-to-t from-slate-950 to-slate-900"
       >
         {user && (
           <>
             <SignedIn>
-              <UserButton />
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ delay: 0.4, type: 'tween', stiffness: 300 }}
+                className="flex justify-center mb-4"
+              >
+                <div className="p-1 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full">
+                  <UserButton />
+                </div>
+              </motion.div>
             </SignedIn>
-            <div className="flex-1">
-              <p className="text-sm font-medium">{user.fullName || 'User'}</p>
-              <p className="text-xs text-gray-500">{user.primaryEmailAddress?.emailAddress}</p>
-            </div>
+
+            {/* User Info */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="text-center mb-4 px-2"
+            >
+              <p className="text-sm font-semibold text-white truncate">{user.fullName || 'User'}</p>
+              <p className="text-xs text-slate-400 truncate mt-1">
+                {user.primaryEmailAddress?.emailAddress}
+              </p>
+            </motion.div>
           </>
         )}
 
-        <SignOutButton>
-          <button
-            className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-sidebar-foreground hover:bg-primary-light transition"
-            aria-label="Sign out"
-          >
-            <ArrowRightOnRectangleIcon className="w-5 h-5" />
-            Logout
-          </button>
-        </SignOutButton>
-      </div>
-    </aside>
+        {/* Logout Button */}
+        <LogoutButton />
+      </motion.div>
+    </motion.aside>
   );
 }

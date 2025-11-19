@@ -1,17 +1,24 @@
 import { Suspense } from 'react';
 import Products from './_components';
 import ProductsLoader from './_components/ProductsLoader';
+import { Header } from '@/components/Header';
+import { SquareChartGantt } from 'lucide-react';
 
 export default function ProductsPage() {
   return (
     <div className="">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-foreground">Products</h1>
-        <p className="text-muted-foreground mt-1">Manage and view all your products.</p>
+      <Header
+        title="Products"
+        subtitle="Manage and view all your products."
+        icon={<SquareChartGantt className="w-6 h-6 text-white" />}
+        showLive={true}
+      />
+
+      <div className="mt-5">
+        <Suspense fallback={<ProductsLoader />}>
+          <Products />
+        </Suspense>
       </div>
-      <Suspense fallback={<ProductsLoader />}>
-        <Products />
-      </Suspense>
     </div>
   );
 }
