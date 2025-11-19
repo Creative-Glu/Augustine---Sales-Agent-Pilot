@@ -16,7 +16,7 @@ export const LogoutButton = ({ label = 'Logout', fullWidth = true }: LogoutButto
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         className={`flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium text-white 
-          bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 transition-all duration-300 
+           hover:from-red-700 hover:to-rose-700 transition-all duration-300 
           shadow-lg hover:shadow-red-500/30 group ${fullWidth ? 'w-full' : ''}`}
         aria-label={label}
       >
