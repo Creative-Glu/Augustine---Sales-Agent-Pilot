@@ -22,5 +22,5 @@ export const SIDEBAR_LINKS = [
   { href: '/campaigns', label: 'Campaigns', icon: ChartBarIcon },
   // { href: '/leads', label: 'Leads', icon: UserGroupIcon },
   { href: '/journey', label: 'Journey', icon: TreePine },
-  { href: '/profile', label: 'Profile', icon: UserCheck2Icon },
+  // { href: '/profile', label: 'Profile', icon: UserCheck2Icon },
 ];
