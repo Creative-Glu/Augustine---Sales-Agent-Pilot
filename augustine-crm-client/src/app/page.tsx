@@ -10,14 +10,15 @@ export default function Home() {
   console.log('isSignedIn', isSignedIn, user);
 
   useEffect(() => {
-    if (!isLoaded) return;
+    // if (!isLoaded) return;
+    router.replace('/dashboard');
 
-    if (isSignedIn) {
-      router.replace('/dashboard');
-    } else {
-      router.replace('/login');
-    }
-  }, [isLoaded, isSignedIn, router, user]);
+    // if (isSignedIn) {
+    //   router.replace('/dashboard');
+    // } else {
+    // router.replace('/login');
+    // }
+  }, []);
 
   return (
     <div className="flex min-h-screen items-center justify-center">

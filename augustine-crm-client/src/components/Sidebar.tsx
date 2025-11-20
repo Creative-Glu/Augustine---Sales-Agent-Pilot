@@ -154,7 +154,7 @@ export default function Sidebar() {
         )}
 
         {/* Logout Button */}
-        <LogoutButton />
+        {/* <LogoutButton /> */}
       </motion.div>
     </motion.aside>
   );
